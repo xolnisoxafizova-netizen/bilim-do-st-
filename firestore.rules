@@ -1,0 +1,12 @@
+rules_version = '2';
+// Bilim do'sti uchun Firestore qoidalari (prototip).
+// Faqat platforma ishlatadigan 6 ta to'plamga ruxsat beradi va 30 kundan keyin yopilib qolmaydi.
+// Diqqat: havolani bilgan har kim bazani o'qiy oladi. Haqiqiy o'quvchilar ma'lumotini kiritishdan oldin
+// Firebase Authentication qo'shib, qoidalarni kuchaytirish kerak.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{coll}/{id} {
+      allow read, write: if coll in ['teachers', 'students', 'logins', 'tasks', 'submissions', 'files'];
+    }
+  }
+}
